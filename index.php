@@ -1,87 +1,59 @@
+<?php
+$msg = $_GET['msg'] ?? null;
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblioteca Virtual</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio de Sesión</title>
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(135deg, #4e73df, #224abe);
-      color: white;
-      min-height: 100vh;
-    }
-    .card {
-      border: none;
-      border-radius: 15px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
-    }
-    .card i {
-      font-size: 60px;
-      margin-bottom: 10px;
-      color: #224abe;
-    }
-    .container {
-      margin-top: 100px;
-    }
-  </style>
-  <script src="https://kit.fontawesome.com/a2d9d5d8a8.js" crossorigin="anonymous"></script>
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        📚 Biblioteca Virtual
-      </a>
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+
+  <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+    <div class="text-center mb-3">
+      <h4 class="text-primary"><i class="fa-solid fa-user-shield"></i> Iniciar Sesión</h4>
     </div>
-  </nav>
 
-  <div class="container text-center">
-    <h1 class="mb-4 mt-4">Bienvenido al Sistema de Biblioteca</h1>
-    <p class="mb-5">Gestiona los libros, usuarios y préstamos de manera sencilla.</p>
-
-    <div class="row justify-content-center">
-      <!-- LIBROS -->
-      <div class="col-md-4 mb-4">
-        <a href="libros/mostrar_libros.php" class="text-decoration-none text-dark">
-          <div class="card p-4 shadow-lg">
-            <i class="fas fa-book"></i>
-            <h4>Gestión de Libros</h4>
-            <p>Registrar, editar y eliminar libros disponibles.</p>
-          </div>
-        </a>
+    <form method="POST" action="php/login.php">
+      <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input type="text" name="nombre_usuario" class="form-control" placeholder="Ingrese su usuario" required>
       </div>
-
-      <!-- USUARIOS -->
-      <div class="col-md-4 mb-4">
-        <a href="usuarios/mostrar_usuarios.php" class="text-decoration-none text-dark">
-          <div class="card p-4 shadow-lg">
-            <i class="fas fa-user"></i>
-            <h4>Gestión de Usuarios</h4>
-            <p>Administrar los datos de los usuarios registrados.</p>
-          </div>
-        </a>
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required>
       </div>
-
-      <!-- PRÉSTAMOS -->
-      <div class="col-md-4 mb-4">
-        <a href="prestamos/mostrar_prestamos.php" class="text-decoration-none text-dark">
-          <div class="card p-4 shadow-lg">
-            <i class="fas fa-hand-holding"></i>
-            <h4>Gestión de Préstamos</h4>
-            <p>Controlar préstamos activos y devoluciones.</p>
-          </div>
-        </a>
-      </div>
-    </div>
+      <button type="submit" class="btn btn-primary w-100">
+        <i class="fa-solid fa-right-to-bracket"></i> Entrar
+      </button>
+    </form>
   </div>
 
-  <footer class="text-center mt-5 text-light">
-    <p>© 2025 Biblioteca Virtual | Desarrollado por <b>Alex C García González</b></p>
-  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <?php if ($msg): ?>
+  <script>
+    const alerts = {
+      nouser: { icon: 'error', title: 'Usuario no encontrado', text: 'Verifica tu nombre de usuario.' },
+      wrongpass: { icon: 'error', title: 'Contraseña incorrecta', text: 'Por favor, verifica tus datos.' },
+      empty: { icon: 'warning', title: 'Campos vacíos', text: 'Por favor llena todos los campos.' },
+      logout: { icon: 'success', title: 'Sesión cerrada correctamente' },
+      default: { icon: 'info', title: 'Ocurrió un error desconocido' }
+    };
+
+    const msg = '<?= $msg ?>';
+    Swal.fire({ ...(alerts[msg] || alerts.default), confirmButtonColor: '#4e73df' });
+  </script>
+  <?php endif; ?>
+
 </body>
 </html>
