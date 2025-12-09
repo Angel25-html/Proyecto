@@ -1,87 +1,167 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblioteca Virtual</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Biblioteca Virtual</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a2d9d5d8a8.js" crossorigin="anonymous"></script>
+
   <style>
     body {
-      background: linear-gradient(135deg, #4e73df, #224abe);
+      background: #f4f6f9;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background: #343a40;
       color: white;
-      min-height: 100vh;
+      padding-top: 20px;
+      transition: 0.3s;
     }
-    .card {
+
+    .sidebar h4 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 12px 25px;
+      color: #ddd;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .sidebar a:hover {
+      background: #495057;
+      color: #fff;
+    }
+
+    /* Content */
+    .content {
+      margin-left: 260px;
+      padding: 30px;
+    }
+
+    /* Cards */
+    .card-dashboard {
       border: none;
-      border-radius: 15px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 12px;
+      padding: 25px;
+      color: white;
     }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
-    }
-    .card i {
-      font-size: 60px;
-      margin-bottom: 10px;
-      color: #224abe;
-    }
-    .container {
-      margin-top: 100px;
+
+    .bg-libros { background: #4e73df; }
+    .bg-usuarios { background: #1cc88a; }
+    .bg-prestamos { background: #f6c23e; }
+
+    .icon-card {
+      font-size: 50px;
+      opacity: 0.8;
     }
   </style>
-  <script src="https://kit.fontawesome.com/a2d9d5d8a8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        📚 Biblioteca Virtual
-      </a>
-    </div>
-  </nav>
-
-  <div class="container text-center">
-    <h1 class="mb-4 mt-4">Bienvenido al Sistema de Biblioteca</h1>
-    <p class="mb-5">Gestiona los libros, usuarios y préstamos de manera sencilla.</p>
-
-    <div class="row justify-content-center">
-      <!-- LIBROS -->
-      <div class="col-md-4 mb-4">
-        <a href="libros/mostrar_libros.php" class="text-decoration-none text-dark">
-          <div class="card p-4 shadow-lg">
-            <i class="fas fa-book"></i>
-            <h4>Gestión de Libros</h4>
-            <p>Registrar, editar y eliminar libros disponibles.</p>
-          </div>
-        </a>
-      </div>
-
-      <!-- USUARIOS -->
-      <div class="col-md-4 mb-4">
-        <a href="usuarios/mostrar_usuarios.php" class="text-decoration-none text-dark">
-          <div class="card p-4 shadow-lg">
-            <i class="fas fa-user"></i>
-            <h4>Gestión de Usuarios</h4>
-            <p>Administrar los datos de los usuarios registrados.</p>
-          </div>
-        </a>
-      </div>
-
-      <!-- PRÉSTAMOS -->
-      <div class="col-md-4 mb-4">
-        <a href="prestamos/mostrar_prestamos.php" class="text-decoration-none text-dark">
-          <div class="card p-4 shadow-lg">
-            <i class="fas fa-hand-holding"></i>
-            <h4>Gestión de Préstamos</h4>
-            <p>Controlar préstamos activos y devoluciones.</p>
-          </div>
-        </a>
-      </div>
-    </div>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h4><i class="fas fa-book-reader"></i> Biblioteca</h4>
+    <a href="#"><i class="fas fa-home me-2"></i> Dashboard</a>
+    <a href="libros/mostrar_libros.php"><i class="fas fa-book me-2"></i> Libros</a>
+    <a href="usuarios/mostrar_usuarios.php"><i class="fas fa-user me-2"></i> Usuarios</a>
+    <a href="prestamos/mostrar_prestamos.php"><i class="fas fa-hand-holding me-2"></i> Préstamos</a>
+    <hr class="text-light" />
+    <a href="#"><i class="fas fa-cog me-2"></i> Configuración</a>
+    <a href="#"><i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión</a>
   </div>
 
-  <footer class="text-center mt-5 text-light">
-    <p>© 2025 Biblioteca Virtual | Desarrollado por <b>Alex C García González</b></p>
-  </footer>
+  <!-- Content -->
+  <div class="content">
+    <h2 class="mb-4">Panel Administrativo</h2>
+    <p class="mb-4">Bienvenido al panel de control. Administra toda la biblioteca desde un solo lugar.</p>
+
+    <div class="row">
+      <!-- Libros -->
+      <div class="col-md-4 mb-4">
+        <div class="card-dashboard bg-libros shadow">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4>Libros</h4>
+              <p>Gestión general de libros</p>
+            </div>
+            <i class="fas fa-book icon-card"></i>
+          </div>
+          <a href="libros/mostrar_libros.php" class="btn btn-light btn-sm mt-3">Ir a Libros</a>
+        </div>
+      </div>
+
+      <!-- Usuarios -->
+      <div class="col-md-4 mb-4">
+        <div class="card-dashboard bg-usuarios shadow">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4>Usuarios</h4>
+              <p>Control de usuarios registrados</p>
+            </div>
+            <i class="fas fa-user icon-card"></i>
+          </div>
+          <a href="usuarios/mostrar_usuarios.php" class="btn btn-light btn-sm mt-3">Ir a Usuarios</a>
+        </div>
+      </div>
+
+      <!-- Préstamos -->
+      <div class="col-md-4 mb-4">
+        <div class="card-dashboard bg-prestamos shadow">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4>Préstamos</h4>
+              <p>Control y seguimiento</p>
+            </div>
+            <i class="fas fa-hand-holding icon-card"></i>
+          </div>
+          <a href="prestamos/mostrar_prestamos.php" class="btn btn-light btn-sm mt-3">Ir a Préstamos</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de estadísticas -->
+    <h3 class="mt-5 mb-3">Estadísticas Generales</h3>
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <div class="card p-3 text-center shadow">
+          <h5>Total Libros</h5>
+          <h2>250</h2>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <div class="card p-3 text-center shadow">
+          <h5>Usuarios Registrados</h5>
+          <h2>120</h2>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <div class="card p-3 text-center shadow">
+          <h5>Préstamos Activos</h5>
+          <h2>35</h2>
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <div class="card p-3 text-center shadow">
+          <h5>Devoluciones Pendientes</h5>
+          <h2>5</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
